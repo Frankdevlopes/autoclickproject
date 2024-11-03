@@ -22,6 +22,10 @@ To run this project, the following Python libraries are required:
 - `tkinter` (standard Python library, pre-installed with Python)
 - `Pillow` - For image manipulation and display in the Tkinter GUI
 - `pyautogui` - For simulating mouse clicks and movements
+-  `keyboard` - For capturing keyboard events
+- `json` - For handling data storage (part of Python's standard library)
+- `pynput` - For mouse event listening
+- `pystray` - For creating system tray icons
 
 ### Installation Instructions
 
@@ -31,12 +35,9 @@ To run this project, the following Python libraries are required:
 2. **Install Dependencies**:
    Open a terminal (or Command Prompt on Windows) and run the following command to install the necessary libraries:
    ```bash
-   pip install pillow pyautogui
+   pip install pillow pyautogui keyboard pynput pystray
 
 
 
 
-   install all dependencies at once by running
-   
-pip install pillow pyautogui keyboard pynput pystray
 
