@@ -1,0 +1,44 @@
+name: Build macOS Package
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+    - name: Check out the code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x' # Replace '3.x' with your required version
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install py2app # py2app is used to package Python apps for macOS
+
+    - name: Build the macOS app
+      run: |
+        python setup.py py2app
+
+    - name: Archive build output
+      uses: actions/upload-artifact@v2
+      with:
+        name: macOS-App
+        path: dist/*.app # This will package the output .app file
+
+    - name: Create .dmg file (optional)
+      run: |
+        hdiutil create -volname "AutoClicker" -srcfolder "dist" -ov -format UDZO "AutoClicker.dmg"
+    - name: Upload .dmg
+      uses: actions/upload-artifact@v2
+      with:
+        name: AutoClicker-dmg
+        path: AutoClicker.dmg
