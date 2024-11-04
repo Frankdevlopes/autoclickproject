@@ -8,8 +8,16 @@ DATA_FILES = [
 ]
 OPTIONS = {
     'argv_emulation': True,
-    'packages': [],  # List any additional packages if required
+    'packages': [
+        'PIL',           # for Pillow
+        'pyautogui', 
+        'keyboard', 
+        'pynput', 
+        'pystray',
+        'tkinter',       # tkinter might need explicit inclusion
+    ],
     'excludes': ['winreg', 'nt', '_winapi', '_frozen_importlib_external'],  # Exclude Windows-specific modules
+    'verbose': True
 }
 
 setup(
