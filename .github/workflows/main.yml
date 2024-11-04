@@ -15,21 +15,26 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v4  # Updated from v2 to v4
+        uses: actions/setup-python@v4  # Updated to latest version
         with:
           python-version: '3.x'
 
+      - name: Upgrade pip and setuptools
+        run: |
+          python -m pip install --upgrade pip setuptools
+
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
           pip install py2app
 
       - name: Build the macOS app
         run: |
           python setup.py py2app
+        env:
+          PYTHONWARNINGS: ignore::DeprecationWarning
 
       - name: Archive build output
-        uses: actions/upload-artifact@v3  # Ensure you’re using the latest version (v3)
+        uses: actions/upload-artifact@v3  # Latest version
         with:
           name: macOS App
           path: dist/*.app

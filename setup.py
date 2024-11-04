@@ -8,7 +8,8 @@ DATA_FILES = [
 ]
 OPTIONS = {
     'argv_emulation': True,
-    'packages': [],  # List any additional packages if required
+    'packages': [],  # Add any additional packages if required
+    'iconfile': 'icon.icns',  # Optional: add a .icns file if you have an app icon for macOS
 }
 
 setup(
