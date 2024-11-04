@@ -12,29 +12,29 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  # Latest version
 
       - name: Set up Python
-        uses: actions/setup-python@v4  # Updated to latest version
+        uses: actions/setup-python@v4  # Latest version
         with:
-          python-version: '3.x'
+          python-version: '3.9'  # Replace with the specific Python version you need
 
       - name: Upgrade pip and setuptools
         run: |
-          python -m pip install --upgrade pip setuptools
+          python -m pip install --upgrade pip setuptools wheel
 
       - name: Install dependencies
         run: |
-          pip install py2app
+          pip install py2app  # Installs py2app for building the macOS app
 
       - name: Build the macOS app
         run: |
           python setup.py py2app
         env:
-          PYTHONWARNINGS: ignore::DeprecationWarning
+          PYTHONWARNINGS: ignore::DeprecationWarning  # Suppresses warnings that may clutter logs
 
       - name: Archive build output
         uses: actions/upload-artifact@v3  # Latest version
         with:
-          name: macOS App
-          path: dist/*.app
+          name: macOS_App
+          path: dist/*.app  # Ensures the .app package is captured
