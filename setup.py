@@ -8,8 +8,8 @@ DATA_FILES = [
 ]
 OPTIONS = {
     'argv_emulation': True,
-    'packages': [],  # Add any additional packages if required
-    'iconfile': 'icon.icns',  # Optional: add a .icns file if you have an app icon for macOS
+    'packages': [],  # List any additional packages if required
+    'excludes': ['winreg', 'nt', '_winapi', '_frozen_importlib_external'],  # Exclude Windows-specific modules
 }
 
 setup(
